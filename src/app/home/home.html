@@ -1,3 +1,135 @@
 <!-- <app-generic [data]="jsonData.data[0]"></app-generic> -->
 
-test
+<div class="main-container">
+
+    <!-- Search Row -->
+    <div class="search-row">
+        <mat-form-field appearance="outline" class="search-input mat-32">
+            <mat-label>Search Providers by PIN, Facets ID, TIN, NPI, Name, Location...</mat-label>
+            <input matInput />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="provider-select mat-32">
+            <mat-label>Select</mat-label>
+            <mat-select placeholder="Providers">
+                <mat-option value="providers">Providers</mat-option>
+                <mat-option value="facilities">Facilities</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button matIconButton aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>filter_alt</mat-icon>
+        </button>
+
+        <button matButton="filled" class="search-btn"><mat-icon>search</mat-icon>Search</button>
+    </div>
+
+    <div class="chip-wrapper">
+        <div class="chip">
+            <span class="chip-label">Hospital</span>
+            <span class="chip-close">×</span>
+        </div>
+
+        <div class="chip">
+            <span class="chip-label">ASC</span>
+            <span class="chip-close">×</span>
+        </div>
+
+        <div class="chip">
+            <span class="chip-label">SNF</span>
+            <span class="chip-close">×</span>
+        </div>
+
+        <div class="chip">
+            <span class="chip-label">Medicare</span>
+            <span class="chip-close">×</span>
+        </div>
+
+        <div class="chip">
+            <span class="chip-label">San Diego</span>
+            <span class="chip-close">×</span>
+        </div>
+
+        <div class="chip">
+            <span class="chip-label">Southern California</span>
+            <span class="chip-close">×</span>
+        </div>
+
+        <div class="chip">
+            <span class="chip-label">System 2</span>
+            <span class="chip-close">×</span>
+        </div>
+    </div>
+
+    <div class="flex-space-beetween mt-28">
+        <!-- Tabs -->
+        <mat-tab-group class="status-tabs" mat-stretch-tabs="false">
+            <mat-tab label="ACTIVE"></mat-tab>
+            <mat-tab label="TERMINATED"></mat-tab>
+        </mat-tab-group>
+
+        <!-- Pagination / Alphabet -->
+        <div class="actions-paginator">
+            <div class="pagination-row">
+                <span class="page">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </span>
+                <span class="page active">A</span>
+                <span class="page">B</span>
+                <span class="page">C</span>
+                <span class="page">D</span>
+                <span class="page">E</span>
+                <span class="page">F</span>
+                <span class="page">G</span>
+                <span class="page">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </span>
+            </div>
+
+            <div class="view-toggle">
+                <button class="view-btn active" title="List view">
+                    <mat-icon>list</mat-icon>
+                </button>
+
+                <button class="view-btn" title="Grid view">
+                    <mat-icon>grid_view</mat-icon>
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="card-grid">
+        <div class="info-card" *ngFor="let card of cards">
+
+            <div class="card-content">
+                <h4 class="name">{{ card.name }}</h4>
+                <p class="email">{{ card.email }}</p>
+                <p class="phone">{{ card.phone }}</p>
+            </div>
+
+            <div class="info-icon">i</div>
+
+        </div>
+    </div>
+
+    <div class="list-pagination">
+        <div class="pagination-row">
+            <span class="page">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </span>
+            <span class="page active">A</span>
+            <span class="page">B</span>
+            <span class="page">C</span>
+            <span class="page">D</span>
+            <span class="page">E</span>
+            <span class="page">F</span>
+            <span class="page">G</span>
+            <span class="page">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </span>
+        </div>
+    </div>
+
+</div>

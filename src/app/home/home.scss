@@ -1,0 +1,337 @@
+$container-bg: #ffffff;
+$primary: #1976d2;
+$chip-bg: #e3efff;
+$text-color: #555;
+
+/* Main Container */
+.main-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: $container-bg;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Search Section */
+.search-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .search-input {
+        flex: 1;
+        min-width: 260px;
+    }
+
+    .provider-select {
+        width: 160px;
+    }
+
+    .search-btn {
+        &.mat-mdc-unelevated-button {
+            border-radius: 8px !important;
+        }
+    }
+}
+
+
+/* Tabs */
+.status-tabs {
+    margin-top: 10px;
+}
+
+.flex-space-beetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &.mt-28 {
+        margin-top: 20px;
+    }
+}
+
+/* Pagination */
+.actions-paginator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.pagination-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+
+    .page {
+        padding: 6px 12px;
+        border-radius: 50px;
+        cursor: pointer;
+        border: 1px solid $chip-bg;
+        font-weight: 500;
+        transition: all 0.2s ease;
+
+        &.active {
+            border-color: $primary;
+        }
+
+        &:hover {
+            background-color: lighten($chip-bg, 5%);
+        }
+
+        &:first-child,
+        &:last-child {
+            background-color: transparent;
+            border-color: transparent;
+            padding: 0 !important;
+            line-height: 1;
+        }
+    }
+
+    .more-icon {
+        cursor: pointer;
+        color: $text-color;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .actions-paginator {
+        margin-top: 15px;
+    }
+
+    .flex-space-beetween {
+        display: block;
+    }
+
+    .search-row {
+        flex-direction: column;
+        align-items: stretch;
+
+        .provider-select,
+        .search-btn {
+            width: 100%;
+        }
+    }
+}
+
+.mat-32 {
+    width: 100%;
+
+    ::ng-deep {
+
+        /* Outline container */
+        .mat-mdc-text-field-wrapper {
+            height: 40px;
+        }
+
+        /* Input & select text */
+        .mat-mdc-form-field-infix {
+            padding: 0 8px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Actual input */
+        input.mat-mdc-input-element {
+            height: 40px;
+        }
+
+        /* Select trigger */
+        .mat-mdc-select-trigger {
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Remove extra vertical space */
+        .mat-mdc-form-field-subscript-wrapper {
+            display: none;
+        }
+
+        .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+            top: calc(var(--mat-form-field-container-height, 40px)/2);
+        }
+
+        .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
+            --mat-mdc-form-field-label-transform: translateY(calc(calc(6.75px + var(--mat-form-field-container-height, 42px) / 2) * -1)) scale(var(--mat-mdc-form-field-floating-label-scale, 0.75));
+        }
+    }
+}
+
+//Matchipe styles
+.chip-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background-color: #e3efff;
+    border: 1px solid #1976d2;
+    border-radius: 16px;
+    font-size: 13px;
+    color: #1976d2;
+    cursor: default;
+}
+
+.chip-label {
+    white-space: nowrap;
+}
+
+.chip-close {
+    font-size: 14px;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    background: #1976d2;
+    width: 5px;
+    align-items: center;
+    height: 5px;
+    color: #ffffff;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.chip-close:hover {
+    background-color: #1976d2;
+    color: #fff;
+}
+
+::ng-deep {
+    .mat-mdc-tab.mdc-tab {
+        min-width: 200px !important;
+        height: 42px !important;
+    }
+}
+
+
+.view-toggle {
+    display: inline-flex;
+    border: 1px solid #1976d2;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.view-btn {
+    width: 36px;
+    height: 32px;
+    border: none;
+    background-color: #ffffff;
+    color: #1976d2;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+/* Divider line between icons */
+.view-btn:not(:last-child) {
+    border-right: 1px solid #1976d2;
+}
+
+/* Active state */
+.view-btn.active {
+    background-color: #e3efff;
+    font-weight: 600;
+}
+
+/* Hover */
+.view-btn:hover {
+    background-color: #e3efff;
+}
+
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.info-card {
+    background-color: #ffffff;
+    border: 1px solid #c0c0c0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: box-shadow 0.2s ease;
+    transition: all 0.2s ease;
+    &:hover {
+        background-color: rgb(208, 232, 255);
+    }
+}
+
+.info-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: #1a1a1a;
+}
+
+.email,
+.phone {
+    font-size: 13px;
+    margin: 0;
+    color: #555;
+}
+
+.info-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid #c0c0c0;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 28px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 992px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.list-pagination {
+    width: 100%;
+    margin-top: 24px;
+
+    .pagination-row {
+        justify-content: center;
+    }
+}
