@@ -254,7 +254,14 @@ $text-color: #555;
     background-color: #e3efff;
 }
 
-
+.card-list { 
+   .info-card {
+    margin-bottom: 10px;
+    &:first-child {
+        margin-top: 10px;
+    }
+   }
+}
 .card-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
