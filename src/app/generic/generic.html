@@ -1,0 +1,195 @@
+<ng-container *ngIf="data">
+    <ng-container
+      *ngTemplateOutlet="renderItem; context: { $implicit: data }"
+    ></ng-container>
+  </ng-container>
+  
+  <ng-template #renderItem let-item>
+    <ng-container [ngSwitch]="getTag(item)">
+      <!-- Render DIV -->
+      <div
+        *ngSwitchCase="'div'"
+        [style]="getAlignment(item)"
+        [ngClass]="getCssBasedOnViewType(item)"
+        [ngStyle]="{ 
+        background: item && item.bgColorGradient ? 
+    'linear-gradient(to right, ' + item.bgColorGradient[isHovered(item) ? 'hovered' : 'unselected'][0] + ', '
+     + item.bgColorGradient[isHovered(item) ? 'hovered' : 'unselected'][1] + ')' : 'transparent',
+  
+       display: 'flex',
+      'flex-direction': item.contentLayout === 'horizontal' ? 'row' : 'column',
+      gap: '10px',
+      width: item.width ? item.width : 'max-content',
+      'text-align': item.alignment || 'left',
+       }"
+        (mouseenter)="setHovered(item, true)"
+        (mouseleave)="setHovered(item, false)"
+      >
+        <ng-container *ngFor="let sub of item.subItems">
+          <ng-container
+            *ngTemplateOutlet="renderItem; context: { $implicit: sub }"
+          ></ng-container>
+        </ng-container>
+      </div>
+  
+      <div *ngSwitchCase="'dropdown'" class="form-field">
+        <label for="providerSelect" class="field-label">{{ item.label }}</label>
+  
+        <select
+          id="providerSelect"
+          class="custom-select"
+          [(ngModel)]="selectedProvider"
+        >
+          <!-- <option value="" disabled selected>
+                    <span class="select-badge">Select</span>
+                </option> -->
+  
+          <option value="">{{ item.values[0] }}</option>
+          <option *ngFor="let provider of item.values">{{ provider }}</option>
+        </select>
+      </div>
+  
+      <!-- <div *ngSwitchCase="'dropdown'" [innerHTML]="getProviderSelectDropDownhtml(item)"></div> -->
+  
+      <!-- Render Paragraph -->
+      <p
+        *ngSwitchCase="'p'"
+        [style]="getAlignment(item)"
+        [ngStyle]="{ 
+       display: 'flex',
+      'flex-direction': item.contentLayout === 'horizontal' ? 'row' : 'column',
+      gap: '10px',
+      'text-alignment': item.alignment || 'left',
+      color: item.fontColor? item.fontColor[isHovered(item) ? 'hovered' : 'unselected']: '#808080'
+       }"
+        (mouseenter)="setHovered(item, true)"
+        (mouseleave)="setHovered(item, false)"
+      >
+        <ng-container *ngFor="let sub of item.subItems">
+          @if ( null != sub.text) {
+          <span [style]="getStyle(sub)">{{ sub.text }}</span>
+          } @else {
+          <ng-container
+            *ngTemplateOutlet="renderItem; context: { $implicit: sub }"
+          ></ng-container>
+          }
+        </ng-container>
+      </p>
+  
+      <!-- when json wise its just a textView with no other subItems-->
+      <p
+        *ngSwitchCase="'tv'"
+        [style]="getAlignment(item)"
+        [ngStyle]="{ 
+       display: 'flex',
+      'flex-direction': item.contentLayout === 'horizontal' ? 'row' : 'column',
+      gap: '10px',
+      'text-alignment': item.alignment || 'left',
+      color: item.fontColor? item.fontColor[isHovered(item) ? 'hovered' : 'unselected']: '#808080'
+       }"
+        (mouseenter)="setHovered(item, true)"
+        (mouseleave)="setHovered(item, false)"
+      >
+        <span [style]="getStyle(item)"
+          >{{ item.text ? item.text : item.label? item.label: "" }}</span
+        >
+  
+        <!-- <ng-container *ngFor="let sub of item.subItems">
+        @if ( null != sub.text) {
+            <span [style]="getStyle(sub)">{{ sub.text }}</span>
+        } @else {
+            <ng-container *ngTemplateOutlet="renderItem; context: { $implicit: sub }"></ng-container>
+        }
+      </ng-container> -->
+      </p>
+  
+      <!-- Render Button -->
+      <button
+        *ngSwitchCase="'button'"
+        [style]="getAlignment(item)"
+        [ngClass]="getCssBasedOnViewType(item)"
+        [style.--dynamic-width]="item.width"
+        [style.--dynamic-padding]="item.padding"
+        [ngStyle]="{ background: item && item.bgColorGradient ? 
+    'linear-gradient(to right, ' + item.bgColorGradient[isHovered(item) ? 'hovered' : 'unselected'][0] + ', '
+     + item.bgColorGradient[isHovered(item) ? 'hovered' : 'unselected'][1] + ')' : '#FFFFFF',
+       display: 'flex',
+      'flex-direction': item.contentLayout === 'horizontal' ? 'row' : 'column',
+      gap: '10px',
+      'text-align': item.alignment || 'center',
+      width: 'max-content',
+      color: item.fontColor? item.fontColor[isHovered(item) ? 'hovered' : 'unselected']: '#808080'
+       }"
+        (mouseenter)="setHovered(item, true)"
+        (mouseleave)="setHovered(item, false)"
+      >
+        <ng-container *ngFor="let sub of item.subItems">
+          <!-- <ng-container *ngTemplateOutlet="renderItem; context: { $implicit: sub }"></ng-container> -->
+          @if ( null != sub.text) {
+          <span [style]="getStyle(sub)">{{ sub.text }}</span>
+          } @else { @if ( null != sub.label) {
+          <span [style]="getStyle(sub)">{{ sub.label }}</span>
+          } @else {
+          <ng-container
+            *ngTemplateOutlet="renderItem; context: { $implicit: sub }"
+          ></ng-container>
+          } }
+        </ng-container>
+        <!-- <ng-container *ngFor="let sub of item.subItems">
+        <span [style]="getStyle(sub)">{{ sub.label? sub.label: sub.text? sub.text: "" }}</span>
+      </ng-container> -->
+      </button>
+  
+      <!-- Bullet List -->
+      <!-- <li *ngSwitchCase="'li'" [style]="getAlignment(item)" class="custom-li">
+        
+        <ng-container *ngFor="let sub of item.subItems">
+            <strong *ngIf="sub.style === 'emphasized'; else normal">{{ sub.text }}</strong>
+            <ng-template #normal>{{ sub.text }}</ng-template>
+            &nbsp;
+        </ng-container>
+  
+      <li *ngFor="let sub of item.subItems">
+        {{ sub.text }}
+      </li>
+    </li> -->
+  
+      <ul *ngSwitchCase="'li'" [style.text-align]="item.alignment">
+        <li class="custom-li">
+          <ng-container *ngFor="let sub of item.subItems; let last = last">
+            <strong *ngIf="sub.style === 'emphasized'; else normal"
+              >{{ sub.text }}</strong
+            >
+            <ng-template #normal>{{ sub.text }}</ng-template>
+            <span *ngIf="!last">&nbsp;</span>
+          </ng-container>
+        </li>
+      </ul>
+  
+      <img
+        *ngSwitchCase="'img'"
+        [style]="getAlignment(item)"
+        [ngClass]="getCssBasedOnViewType(item)"
+        [style.--dynamic-width]="item.width"
+        [style.--dynamic-padding]="item.padding"
+        [src]="item.uri[isHovered(item) ? 'hovered' : 'default']"
+      />
+      <input
+        *ngSwitchCase="'input'"
+        [ngClass]="getCssBasedOnViewType(item)"
+        [style.--dynamic-width]="item.width"
+        [style.--dynamic-padding]="item.padding"
+        [placeholder]="getPlaceholderIfAvailable(item)"
+      />
+  
+      <!-- Default -->
+      <div *ngSwitchDefault>
+        <ng-container *ngFor="let sub of item.subItems">
+          <ng-container
+            *ngTemplateOutlet="renderItem; context: { $implicit: sub }"
+          ></ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-template>
+  
