@@ -5,7 +5,7 @@ import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +20,8 @@ import { NgFor } from '@angular/common';
     MatTab,
     MatButton,
     MatIconButton,
-    NgFor
+    NgFor,
+    NgClass
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',

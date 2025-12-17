@@ -61,42 +61,6 @@ $text-color: #555;
     gap: 12px;
 }
 
-.pagination-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-
-    .page {
-        padding: 6px 12px;
-        border-radius: 50px;
-        cursor: pointer;
-        border: 1px solid $chip-bg;
-        font-weight: 500;
-        transition: all 0.2s ease;
-
-        &.active {
-            border-color: $primary;
-        }
-
-        &:hover {
-            background-color: lighten($chip-bg, 5%);
-        }
-
-        &:first-child,
-        &:last-child {
-            background-color: transparent;
-            border-color: transparent;
-            padding: 0 !important;
-            line-height: 1;
-        }
-    }
-
-    .more-icon {
-        cursor: pointer;
-        color: $text-color;
-    }
-}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -254,14 +218,16 @@ $text-color: #555;
     background-color: #e3efff;
 }
 
-.card-list { 
-   .info-card {
-    margin-bottom: 10px;
-    &:first-child {
-        margin-top: 10px;
+.card-list {
+    .info-card {
+        margin-bottom: 10px;
+
+        &:first-child {
+            margin-top: 10px;
+        }
     }
-   }
 }
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -279,6 +245,7 @@ $text-color: #555;
     justify-content: space-between;
     transition: box-shadow 0.2s ease;
     transition: all 0.2s ease;
+
     &:hover {
         background-color: rgb(208, 232, 255);
     }
@@ -340,5 +307,56 @@ $text-color: #555;
 
     .pagination-row {
         justify-content: center;
+    }
+}
+
+
+/* End of File */
+
+.pagination-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+
+    .pagination-detail {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        // flex-wrap: wrap;
+        max-width: 200px;
+        overflow: scroll;
+
+        /* Firefox */
+        scrollbar-width: none;
+
+        /* IE / Edge */
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .page {
+            padding: 6px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: 1px solid $chip-bg;
+            font-weight: 500;
+            transition: all 0.2s ease;
+
+            &.active {
+                border-color: $primary;
+            }
+
+            &:hover {
+                background-color: lighten($chip-bg, 5%);
+            }
+        }
+    }
+
+    .more-icon {
+        cursor: pointer;
+        color: $text-color;
     }
 }

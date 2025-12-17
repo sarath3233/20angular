@@ -74,13 +74,9 @@
                 <span class="page">
                     <mat-icon>keyboard_arrow_left</mat-icon>
                 </span>
-                <span class="page active">A</span>
-                <span class="page">B</span>
-                <span class="page">C</span>
-                <span class="page">D</span>
-                <span class="page">E</span>
-                <span class="page">F</span>
-                <span class="page">G</span>
+                <div class="pagination-detail">
+                    <span class="page" *ngFor="let l of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')"  [ngClass]="{'active': l == 'D'}"> {{ l }}</span>
+                </div>
                 <span class="page">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                 </span>
@@ -100,7 +96,7 @@
 
 
     </div>
-    <div class="card-grid"> <!-- Grid View // Enable List view class (card-list) --> 
+    <div class="card-grid"> <!-- Grid View // Enable List view class (card-list) -->
         <div class="info-card" *ngFor="let card of cards">
 
             <div class="card-content">
@@ -119,13 +115,9 @@
             <span class="page">
                 <mat-icon>keyboard_arrow_left</mat-icon>
             </span>
-            <span class="page active">A</span>
-            <span class="page">B</span>
-            <span class="page">C</span>
-            <span class="page">D</span>
-            <span class="page">E</span>
-            <span class="page">F</span>
-            <span class="page">G</span>
+            <div class="pagination-detail">
+                <span class="page" *ngFor="let l of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')" [ngClass]="{'active': l == 'D'}"> {{ l }}</span>
+            </div>
             <span class="page">
                 <mat-icon>keyboard_arrow_right</mat-icon>
             </span>
